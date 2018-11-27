@@ -1,0 +1,3683 @@
+(* Content-type: application/vnd.wolfram.cdf.text *)
+
+(*** Wolfram CDF File ***)
+(* http://www.wolfram.com/cdf *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(***************************************************************************)
+(*                                                                         *)
+(*                                                                         *)
+(*  Under the Wolfram FreeCDF terms of use, this file and its content are  *)
+(*  bound by the Creative Commons BY-SA Attribution-ShareAlike license.    *)
+(*                                                                         *)
+(*        For additional information concerning CDF licensing, see:        *)
+(*                                                                         *)
+(*         www.wolfram.com/cdf/adopting-cdf/licensing-options.html         *)
+(*                                                                         *)
+(*                                                                         *)
+(***************************************************************************)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[      1088,         20]
+NotebookDataLength[    141309,       3662]
+NotebookOptionsPosition[    136895,       3589]
+NotebookOutlinePosition[    137252,       3605]
+CellTagsIndexPosition[    137209,       3602]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["drop test", "Section",
+ CellChangeTimes->{{3.7501643979883347`*^9, 3.750164398691762*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"droptests", "=", 
+   RowBox[{
+   "Import", "[", 
+    "\"\</Users/bashby/Downloads/Star+Trek+Timelines+Wiki-20181102161924.xml\>\
+\"", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.750164401421344*^9, 3.750164416698719*^9}, 
+   3.7507757515511837`*^9},
+ CellLabel->"In[1]:=",ExpressionUUID->"eddb8acb-bc49-4c8f-923e-1799bb452013"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pages", "=", 
+   RowBox[{"Drop", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"droptests", "[", 
+       RowBox[{"[", "2", "]"}], "]"}], "[", 
+      RowBox[{"[", "3", "]"}], "]"}], ",", "2"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.750164426163756*^9, 3.75016442747007*^9}, {
+   3.750164838945148*^9, 3.750164851285224*^9}, {3.750166291762409*^9, 
+   3.750166306087777*^9}, {3.750166375952882*^9, 3.750166390549616*^9}, {
+   3.750166423847746*^9, 3.7501664271735163`*^9}, 3.7507757536119547`*^9},
+ CellLabel->"In[2]:=",ExpressionUUID->"81ec6c86-27f1-4422-b7cb-23d7c6558f48"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"scrapemissiondata", "[", "data_", "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "droptable", ",", "itemstrings", ",", "runs", ",", "runstring", ",", 
+      "step0", ",", "step1", ",", "titlestring", ",", "title", ",", 
+      "chronstring", ",", "chrons", ",", "text", ",", "assoc", ",", 
+      "rarityrules"}], "}"}], ",", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"assoc", "=", 
+      RowBox[{"data", "//.", "\[IndentingNewLine]", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"XMLElement", "[", 
+           RowBox[{"\"\<revision\>\"", ",", "_", ",", "c_"}], "]"}], ":>", 
+          RowBox[{"Association", "[", "c", "]"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"XMLElement", "[", 
+           RowBox[{
+            RowBox[{
+            "\"\<ns\>\"", "|", "\"\<id\>\"", "|", "\"\<parentid\>\"", "|", 
+             "\"\<contributor\>\"", "|", "\"\<model\>\"", "|", 
+             "\"\<format\>\"", "|", "\"\<sha1\>\""}], ",", "_", ",", "c_"}], 
+           "]"}], ":>", 
+          RowBox[{"Sequence", "[", "]"}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"XMLElement", "[", 
+           RowBox[{"\"\<page\>\"", ",", "_", ",", "c_"}], "]"}], ":>", 
+          RowBox[{"Association", "[", "c", "]"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"XMLElement", "[", 
+           RowBox[{"k_", ",", "_", ",", 
+            RowBox[{"{", "c_", "}"}]}], "]"}], ":>", 
+          RowBox[{"Rule", "[", 
+           RowBox[{"k", ",", "c"}], "]"}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"XMLElement", "[", 
+           RowBox[{"k_", ",", 
+            RowBox[{"{", "}"}], ",", 
+            RowBox[{"{", "}"}]}], "]"}], ":>", 
+          RowBox[{"Rule", "[", 
+           RowBox[{"k", ",", "\"\<\>\""}], "]"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"XMLElement", "[", 
+           RowBox[{"\"\<document\>\"", ",", "_", ",", "c_"}], "]"}], ":>", 
+          "c"}]}], "}"}]}]}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"text", "=", 
+      RowBox[{"assoc", "[", "\"\<text\>\"", "]"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"step0", "=", 
+      RowBox[{"StringDelete", "[", 
+       RowBox[{"text", ",", 
+        RowBox[{"Shortest", "[", 
+         RowBox[{"\"\<<!--\>\"", "~~", "___", "~~", "\"\<-->\>\""}], "]"}]}], 
+       "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"step1", "=", 
+      RowBox[{"StringSplit", "[", 
+       RowBox[{"step0", ",", "\"\<\n\>\""}], "]"}]}], ";", "\n", 
+     "\[IndentingNewLine]", 
+     RowBox[{"titlestring", "=", 
+      RowBox[{"First", "@", 
+       RowBox[{"Map", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"StringSplit", "[", 
+           RowBox[{"#", ",", "\"\<|\>\""}], "]"}], "&"}], ",", "step1"}], 
+        "]"}]}]}], ";", "\n", "\[IndentingNewLine]", 
+     RowBox[{"title", "=", 
+      RowBox[{"Association", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Rule", "@@", 
+          RowBox[{"StringTrim", "[", 
+           RowBox[{"StringSplit", "[", 
+            RowBox[{"#", ",", "\"\<=\>\""}], "]"}], "]"}]}], "&"}], "/@", 
+        RowBox[{"Select", "[", 
+         RowBox[{"titlestring", ",", 
+          RowBox[{
+           RowBox[{"StringContainsQ", "[", 
+            RowBox[{"#", ",", 
+             RowBox[{"\"\<mission\>\"", "|", "\"\<level\>\""}]}], "]"}], 
+           "&"}]}], "]"}]}], "]"}]}], ";", "\n", "\[IndentingNewLine]", 
+     RowBox[{"chronstring", "=", 
+      RowBox[{"Select", "[", 
+       RowBox[{"step1", ",", 
+        RowBox[{
+         RowBox[{"StringContainsQ", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{
+           "___", "~~", "\"\<cost\>\"", "~~", "___", "~~", "\"\<=\>\"", "~~", 
+            "__"}]}], "]"}], "&"}]}], "]"}]}], ";", "\n", 
+     "\[IndentingNewLine]", 
+     RowBox[{"chrons", "=", 
+      RowBox[{"First", "@", 
+       RowBox[{"StringCases", "[", 
+        RowBox[{
+         RowBox[{"First", "[", "chronstring", "]"}], ",", 
+         RowBox[{
+          RowBox[{"x", ":", "NumberString"}], "\[RuleDelayed]", 
+          RowBox[{"ToExpression", "@", "x"}]}]}], "]"}]}]}], ";", "\n", 
+     "\[IndentingNewLine]", 
+     RowBox[{"runstring", "=", 
+      RowBox[{"Select", "[", 
+       RowBox[{"step1", ",", 
+        RowBox[{
+         RowBox[{"StringContainsQ", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{
+           "___", "~~", "\"\<runs\>\"", "~~", "___", "~~", "\"\<=\>\"", "~~", 
+            "__"}]}], "]"}], "&"}]}], "]"}]}], ";", "\n", 
+     "\[IndentingNewLine]", 
+     RowBox[{"runs", "=", 
+      RowBox[{"ToExpression", "[", 
+       RowBox[{"First", "[", 
+        RowBox[{"StringTrim", "[", 
+         RowBox[{"runstring", ",", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Except", "[", 
+              RowBox[{
+               RowBox[{"\"\<(\>\"", "|", "\"\<)\>\""}], ",", 
+               "PunctuationCharacter"}], "]"}], "|", "WhitespaceCharacter", 
+             "|", "LetterCharacter"}], ")"}], ".."}]}], "]"}], "]"}], "]"}]}],
+      ";", "\n", "\[IndentingNewLine]", 
+     RowBox[{"itemstrings", "=", 
+      RowBox[{"DeleteCases", "[", 
+       RowBox[{
+        RowBox[{"Select", "[", 
+         RowBox[{"step1", ",", 
+          RowBox[{
+           RowBox[{"StringContainsQ", "[", 
+            RowBox[{"#", ",", 
+             RowBox[{"__", "~~", "\"\<{{item|\>\"", "~~", "__"}]}], "]"}], 
+           "&"}]}], "]"}], ",", 
+        RowBox[{"x_String", "/;", 
+         RowBox[{"StringContainsQ", "[", 
+          RowBox[{"x", ",", 
+           RowBox[{"\"\<note\>\"", "|", "\"\<Schematic\>\""}], ",", 
+           RowBox[{"IgnoreCase", "\[Rule]", "True"}]}], "]"}]}]}], "]"}]}], 
+     ";", "\n", "\[IndentingNewLine]", 
+     RowBox[{"rarityrules", "=", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"\"\<basic\>\"", "\[Rule]", "0"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"\"\<Basic\>\"", "\[Rule]", "0"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"\"\<0\>\"", "\[Rule]", "0"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"\"\<common\>\"", "\[Rule]", "1"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\"\<Common\>\"", "\[Rule]", "1"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\"\<1\>\"", "\[Rule]", "1"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"\"\<uncommon\>\"", "\[Rule]", "2"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\"\<Uncommon\>\"", "\[Rule]", "2"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\"\<2\>\"", "\[Rule]", "2"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"\"\<rare\>\"", "\[Rule]", "3"}], ",", "\[IndentingNewLine]", 
+        
+        RowBox[{"\"\<Rare\>\"", "\[Rule]", "3"}], ",", "\[IndentingNewLine]", 
+        
+        RowBox[{"\"\<3\>\"", "\[Rule]", "3"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"\"\<superrare\>\"", "\[Rule]", "4"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\"\<super rare\>\"", "\[Rule]", "4"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\"\<Superrare\>\"", "\[Rule]", "4"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\"\<Super Rare\>\"", "\[Rule]", "4"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\"\<SuperRare\>\"", "\[Rule]", "4"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\"\<Super rare\>\"", "\[Rule]", "4"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\"\<4\>\"", "\[Rule]", "4"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"\"\<epic\>\"", "\[Rule]", "5"}]}], "\[IndentingNewLine]", 
+       "}"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"droptable", "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"<|", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"\"\<ItemName\>\"", "\[Rule]", 
+           RowBox[{"#", "[", 
+            RowBox[{"[", "2", "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"\"\<Rarity\>\"", "\[Rule]", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", "3", "]"}], "]"}]}], "/.", "rarityrules"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", 
+           RowBox[{"ToExpression", "[", 
+            RowBox[{"#", "[", 
+             RowBox[{"[", "4", "]"}], "]"}], "]"}]}]}], "\[IndentingNewLine]",
+          "|>"}], "&"}], "/@", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"StringTrim", "[", 
+           RowBox[{
+            RowBox[{"StringSplit", "[", 
+             RowBox[{"#", ",", "\"\<|\>\""}], "]"}], ",", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"Except", "[", 
+                RowBox[{
+                 RowBox[{"\"\<(\>\"", "|", "\"\<)\>\""}], ",", 
+                 "PunctuationCharacter"}], "]"}], "|", "WhitespaceCharacter", 
+               "|", "\"\<expr:\>\""}], ")"}], ".."}]}], "]"}], "&"}], "/@", 
+         "itemstrings"}], ")"}]}]}], ";", "\n", "\n", 
+     RowBox[{"Prepend", "[", 
+      RowBox[{
+       RowBox[{"<|", 
+        RowBox[{
+         RowBox[{"\"\<ChronCost\>\"", "\[Rule]", "chrons"}], ",", 
+         RowBox[{"\"\<Runs\>\"", "\[Rule]", "runs"}], ",", 
+         RowBox[{"\"\<Drops\>\"", "\[Rule]", "droptable"}]}], "|>"}], ",", 
+       "title"}], "]"}]}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.7501665478825417`*^9, 3.7501665992363253`*^9}, {
+   3.750166639027102*^9, 3.750166671656547*^9}, {3.750166789757749*^9, 
+   3.7501668273225393`*^9}, {3.750166877464575*^9, 3.750166891257818*^9}, {
+   3.75016695361823*^9, 3.750166954528886*^9}, {3.750167000145688*^9, 
+   3.7501670004004993`*^9}, {3.7501670425518*^9, 3.750167086093728*^9}, {
+   3.750174592921775*^9, 3.750174602153912*^9}, {3.7501746336501904`*^9, 
+   3.750174659938931*^9}, {3.750175202090272*^9, 3.750175230051947*^9}, {
+   3.750176203426626*^9, 3.7501762080329733`*^9}, {3.750176439796829*^9, 
+   3.750176515178419*^9}, {3.750176545970398*^9, 3.750176588041264*^9}, {
+   3.750176627401979*^9, 3.750176651432966*^9}, {3.750176739688427*^9, 
+   3.7501767848452473`*^9}, {3.750176887647502*^9, 3.750176895221113*^9}, {
+   3.7501771972391453`*^9, 3.750177198801486*^9}, {3.750177497827619*^9, 
+   3.750177513566708*^9}, {3.750177574361519*^9, 3.750177605914364*^9}, 
+   3.75018546286765*^9, {3.750185494810109*^9, 3.7501854997798986`*^9}, 
+   3.7503577099500303`*^9, {3.75035801116331*^9, 3.750358018223192*^9}, {
+   3.7503580584816*^9, 3.750358060860817*^9}, {3.750358357720954*^9, 
+   3.750358392218164*^9}, {3.7503585447915382`*^9, 3.75035854560645*^9}, {
+   3.7503585770554*^9, 3.750358578140592*^9}, {3.750358762362108*^9, 
+   3.750358767350236*^9}, {3.7503588049901543`*^9, 3.7503588072524443`*^9}, {
+   3.750359014316244*^9, 3.7503590160232267`*^9}, {3.7503591177789383`*^9, 
+   3.7503591304434967`*^9}, {3.750360645080398*^9, 3.7503606651075087`*^9}, 
+   3.75036099622989*^9, {3.750361674014544*^9, 3.7503616907115498`*^9}, {
+   3.750361927356969*^9, 3.750361929512562*^9}, 3.750362030150487*^9, {
+   3.7503627087781153`*^9, 3.750362710454205*^9}, {3.750363134987505*^9, 
+   3.7503631606979847`*^9}, {3.75036322455088*^9, 3.750363230909*^9}, {
+   3.750364648817226*^9, 3.75036465069285*^9}, {3.750364680926517*^9, 
+   3.750364735153844*^9}, {3.750364982509078*^9, 3.7503649997159653`*^9}, {
+   3.750365158886142*^9, 3.750365164751711*^9}, {3.750373424981968*^9, 
+   3.7503734289461927`*^9}, {3.750771124766274*^9, 3.7507711340464363`*^9}, {
+   3.750771538570517*^9, 3.7507715663553143`*^9}, 3.750775360642273*^9, 
+   3.750791591894382*^9, 3.7507923792030163`*^9, 3.7507926996721087`*^9, 
+   3.750867858070932*^9, {3.750867894998228*^9, 3.750867895428585*^9}, {
+   3.7508700756714582`*^9, 3.7508700997658997`*^9}, {3.750870187587984*^9, 
+   3.7508702566492643`*^9}, {3.750870290316128*^9, 3.750870436540333*^9}},
+ CellLabel->"In[63]:=",ExpressionUUID->"d0f3252e-8ff8-4fcf-9e55-ec0a1e228558"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pagesdropped", "=", 
+   RowBox[{"Delete", "[", 
+    RowBox[{"pages", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", "145", "}"}], ",", 
+       RowBox[{"{", "184", "}"}], ",", 
+       RowBox[{"{", "243", "}"}], ",", 
+       RowBox[{"{", "307", "}"}], ",", 
+       RowBox[{"{", "373", "}"}], ",", 
+       RowBox[{"{", "372", "}"}], ",", 
+       RowBox[{"{", "50", "}"}], ",", 
+       RowBox[{"{", "232", "}"}]}], "}"}]}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.750791690981634*^9, 3.750791710313169*^9}, {
+   3.750792004266116*^9, 3.75079200988662*^9}, {3.750792167724701*^9, 
+   3.750792171178306*^9}, {3.750792713298456*^9, 3.750792723903483*^9}, 
+   3.750867876813491*^9, {3.750869193684308*^9, 3.750869195767061*^9}, {
+   3.750869278517338*^9, 3.750869280366768*^9}},
+ CellLabel->"In[45]:=",ExpressionUUID->"f7731bf1-9d09-4cae-a817-9c35a2232774"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"errors", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"missiondrops", "=", 
+   RowBox[{"MapIndexed", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Check", "[", 
+       RowBox[{
+        RowBox[{"scrapemissiondata", "[", "#", "]"}], ",", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"errors", ",", "#2"}], "]"}]}], "]"}], "&"}], ",", 
+     "pagesdropped"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", "errors"}], "Input",
+ CellChangeTimes->{{3.750775407294718*^9, 3.750775410658008*^9}, {
+   3.750776339024036*^9, 3.750776341144165*^9}, 3.750791642407489*^9, {
+   3.75079170706111*^9, 3.750791718708413*^9}, 3.75079240639044*^9, {
+   3.7507924478989143`*^9, 3.750792448944333*^9}},
+ CellLabel->"In[67]:=",ExpressionUUID->"a84a8f64-e9fd-4f40-ba45-2ba49458821e"],
+
+Cell[BoxData[
+ RowBox[{"{", "}"}]], "Output",
+ CellChangeTimes->{{3.750792449657612*^9, 3.750792454575083*^9}, {
+   3.750792703939781*^9, 3.7507927305650473`*^9}, {3.750867880302071*^9, 
+   3.750867901898243*^9}, 3.750869283273551*^9, 3.7508708252599573`*^9},
+ CellLabel->"Out[69]=",ExpressionUUID->"8ff4fcd7-b50a-428d-9c93-3d22af8fff52"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Special Cases", "Section",
+ CellChangeTimes->{{3.750360468519506*^9, 
+  3.75036047006465*^9}},ExpressionUUID->"87d4ce9c-2dcf-4f24-9758-\
+2f01caed5290"],
+
+Cell[CellGroupData[{
+
+Cell["372", "Item",
+ CellChangeTimes->{{3.75086761565058*^9, 3.750867616938699*^9}, {
+  3.7508676880042963`*^9, 3.750867695559012*^9}, {3.750867825459735*^9, 
+  3.7508678257385798`*^9}},ExpressionUUID->"02898799-97cd-48a7-8a86-\
+e3c9bca05bf4"],
+
+Cell["extra note", "Subitem",
+ CellChangeTimes->{{3.75086761565058*^9, 
+  3.750867618764423*^9}},ExpressionUUID->"ec97e063-85aa-4623-988a-\
+ae91adef0c1a"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"edited372", "=", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{
+     "\"\<mission\>\"", "\[Rule]", "\"\<Mutual Assured Destruction\>\""}], 
+     ",", 
+     RowBox[{"\"\<level\>\"", "\[Rule]", "\"\<normal\>\""}], ",", 
+     RowBox[{"\"\<ChronCost\>\"", "\[Rule]", "8"}], ",", 
+     RowBox[{"\"\<Runs\>\"", "\[Rule]", "254"}], ",", 
+     RowBox[{"\"\<Drops\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{
+          "\"\<ItemName\>\"", "\[Rule]", "\"\<Authorization Code\>\""}], ",", 
+          
+          RowBox[{"\"\<Rarity\>\"", "\[Rule]", "1"}], ",", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", "138"}]}], 
+         "\[RightAssociation]"}], ",", 
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\"\<ItemName\>\"", "\[Rule]", "\"\<Polyalloy\>\""}], ",", 
+          RowBox[{"\"\<Rarity\>\"", "\[Rule]", "2"}], ",", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", "78"}]}], 
+         "\[RightAssociation]"}], ",", 
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\"\<ItemName\>\"", "\[Rule]", "\"\<Microconnector\>\""}], 
+          ",", 
+          RowBox[{"\"\<Rarity\>\"", "\[Rule]", "1"}], ",", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", "260"}]}], 
+         "\[RightAssociation]"}], ",", 
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\"\<ItemName\>\"", "\[Rule]", "\"\<Sensor\>\""}], ",", 
+          RowBox[{"\"\<Rarity\>\"", "\[Rule]", "0"}], ",", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", "286"}]}], 
+         "\[RightAssociation]"}]}], "}"}]}]}], "\[RightAssociation]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.750868035382613*^9, 3.750868040196828*^9}, {
+  3.750870699851099*^9, 3.7508707112644367`*^9}},
+ CellLabel->"In[64]:=",ExpressionUUID->"d94b1cdd-b0ad-4e1b-96d4-4a7f70fc23da"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"edited50", "=", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\"\<mission\>\"", "\[Rule]", "\"\<A Show of Force\>\""}], ",", 
+     RowBox[{"\"\<level\>\"", "\[Rule]", "\"\<normal\>\""}], ",", 
+     RowBox[{"\"\<ChronCost\>\"", "\[Rule]", "4"}], ",", 
+     RowBox[{"\"\<Runs\>\"", "\[Rule]", "20"}], ",", 
+     RowBox[{"\"\<Drops\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{
+          "\"\<ItemName\>\"", "\[Rule]", "\"\<Astrometric Chart\>\""}], ",", 
+          RowBox[{"\"\<Rarity\>\"", "\[Rule]", "1"}], ",", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", "5"}]}], 
+         "\[RightAssociation]"}], ",", 
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{
+          "\"\<ItemName\>\"", "\[Rule]", "\"\<Authorization Code\>\""}], ",", 
+          
+          RowBox[{"\"\<Rarity\>\"", "\[Rule]", "0"}], ",", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", "7"}]}], 
+         "\[RightAssociation]"}], ",", 
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\"\<ItemName\>\"", "\[Rule]", "\"\<Security Codes\>\""}], 
+          ",", 
+          RowBox[{"\"\<Rarity\>\"", "\[Rule]", "0"}], ",", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", "8"}]}], 
+         "\[RightAssociation]"}], ",", 
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{
+          "\"\<ItemName\>\"", "\[Rule]", "\"\<Phaser Type 2 (TOS)\>\""}], ",", 
+          RowBox[{"\"\<Rarity\>\"", "\[Rule]", "0"}], ",", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", "6"}]}], 
+         "\[RightAssociation]"}], ",", 
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{
+          "\"\<ItemName\>\"", "\[Rule]", 
+           "\"\<Starfleet Uniform Pattern\>\""}], ",", 
+          RowBox[{"\"\<Rarity\>\"", "\[Rule]", "0"}], ",", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", "34"}]}], 
+         "\[RightAssociation]"}]}], "}"}]}]}], "\[RightAssociation]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.750869109051222*^9, 3.750869115598689*^9}, {
+  3.750870714913905*^9, 3.75087072128789*^9}},
+ CellLabel->"In[65]:=",ExpressionUUID->"c039cff8-3672-460e-8312-8b981d809f79"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"edited230", "=", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\"\<mission\>\"", "\[Rule]", "\"\<Beyond the Call\>\""}], ",", 
+     RowBox[{"\"\<level\>\"", "\[Rule]", "\"\<normal\>\""}], ",", 
+     RowBox[{"\"\<ChronCost\>\"", "\[Rule]", "4"}], ",", 
+     RowBox[{"\"\<Runs\>\"", "\[Rule]", "10415"}], ",", 
+     RowBox[{"\"\<Drops\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{
+          "\"\<ItemName\>\"", "\[Rule]", "\"\<Communicator (TOS)\>\""}], ",", 
+          
+          RowBox[{"\"\<Rarity\>\"", "\[Rule]", "0"}], ",", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", "4415"}]}], 
+         "\[RightAssociation]"}], ",", 
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\"\<ItemName\>\"", "\[Rule]", "\"\<Hypospray (TNG)\>\""}], 
+          ",", 
+          RowBox[{"\"\<Rarity\>\"", "\[Rule]", "0"}], ",", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", "4451"}]}], 
+         "\[RightAssociation]"}], ",", 
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{
+          "\"\<ItemName\>\"", "\[Rule]", "\"\<Translation Algorithm\>\""}], 
+          ",", 
+          RowBox[{"\"\<Rarity\>\"", "\[Rule]", "0"}], ",", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", "4563"}]}], 
+         "\[RightAssociation]"}], ",", 
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\"\<ItemName\>\"", "\[Rule]", "\"\<Incense\>\""}], ",", 
+          RowBox[{"\"\<Rarity\>\"", "\[Rule]", "0"}], ",", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", "8872"}]}], 
+         "\[RightAssociation]"}], ",", 
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\"\<ItemName\>\"", "\[Rule]", "\"\<Clothing Pattern\>\""}],
+           ",", 
+          RowBox[{"\"\<Rarity\>\"", "\[Rule]", "0"}], ",", 
+          RowBox[{"\"\<Drops\>\"", "\[Rule]", "8944"}]}], 
+         "\[RightAssociation]"}]}], "}"}]}]}], "\[RightAssociation]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.7508691715472927`*^9, 3.750869177536976*^9}, {
+  3.750870725903615*^9, 3.7508707293268213`*^9}, {3.750870885468794*^9, 
+  3.750870886106824*^9}},
+ CellLabel->"In[78]:=",ExpressionUUID->"fa18c27b-d7c3-4f72-b211-a01550808f0d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"allmissiondrops", "=", 
+  RowBox[{"Join", "[", 
+   RowBox[{"missiondrops", ",", 
+    RowBox[{"{", 
+     RowBox[{"edited372", ",", "edited50", ",", "edited230"}], "}"}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.7508680419503307`*^9, 3.750868047148642*^9}, {
+  3.750868116220016*^9, 3.750868119209155*^9}, {3.750869302502152*^9, 
+  3.750869310051112*^9}},
+ CellLabel->"In[79]:=",ExpressionUUID->"6a3c137a-90ee-49ea-af20-93472a36c43e"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   FrameBox[GridBox[{
+      {
+       ItemBox[
+        TagBox[
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"\[LeftAssociation]", 
+            RowBox[{
+             
+             RowBox[{"\<\"mission\"\>", 
+              "\[Rule]", "\<\"Family Squabble\"\>"}], ",", 
+             RowBox[{"\<\"level\"\>", "\[Rule]", "\<\"elite\"\>"}], ",", 
+             RowBox[{"\<\"ChronCost\"\>", "\[Rule]", "12"}], ",", 
+             RowBox[{"\<\"Runs\"\>", "\[Rule]", "292"}], ",", 
+             RowBox[{"\<\"Drops\"\>", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"\[LeftAssociation]", 
+                 RowBox[{
+                  
+                  RowBox[{"\<\"ItemName\"\>", 
+                   "\[Rule]", "\<\"Emitter Crystal\"\>"}], ",", 
+                  RowBox[{"\<\"Rarity\"\>", "\[Rule]", "3"}], ",", 
+                  RowBox[{"\<\"Drops\"\>", "\[Rule]", "75"}]}], 
+                 "\[RightAssociation]"}], ",", 
+                RowBox[{"\[LeftAssociation]", 
+                 RowBox[{
+                  RowBox[{"\<\"ItemName\"\>", "\[Rule]", "\<\"Alcohol\"\>"}], 
+                  ",", 
+                  RowBox[{"\<\"Rarity\"\>", "\[Rule]", "1"}], ",", 
+                  RowBox[{"\<\"Drops\"\>", "\[Rule]", "365"}]}], 
+                 "\[RightAssociation]"}], ",", 
+                RowBox[{"\[LeftAssociation]", 
+                 RowBox[{
+                  
+                  RowBox[{"\<\"ItemName\"\>", 
+                   "\[Rule]", "\<\"Synthesized Polymer\"\>"}], ",", 
+                  RowBox[{"\<\"Rarity\"\>", "\[Rule]", "0"}], ",", 
+                  RowBox[{"\<\"Drops\"\>", "\[Rule]", "345"}]}], 
+                 "\[RightAssociation]"}]}], "}"}]}]}], 
+            "\[RightAssociation]"}], ",", 
+           TemplateBox[{"431"},
+            "OutputSizeLimit`Skeleton"], ",", 
+           RowBox[{"\[LeftAssociation]", 
+            RowBox[{
+             
+             RowBox[{"\<\"mission\"\>", 
+              "\[Rule]", "\<\"Beyond the Call\"\>"}], ",", 
+             RowBox[{"\<\"level\"\>", "\[Rule]", "\<\"normal\"\>"}], ",", 
+             RowBox[{"\<\"ChronCost\"\>", "\[Rule]", "4"}], ",", 
+             RowBox[{"\<\"Runs\"\>", "\[Rule]", "10415"}], ",", 
+             RowBox[{"\<\"Drops\"\>", "\[Rule]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"\[LeftAssociation]", 
+                 RowBox[{
+                  
+                  RowBox[{"\<\"ItemName\"\>", 
+                   "\[Rule]", "\<\"Communicator (TOS)\"\>"}], ",", 
+                  RowBox[{"\<\"Rarity\"\>", "\[Rule]", "0"}], ",", 
+                  RowBox[{"\<\"Drops\"\>", "\[Rule]", "4415"}]}], 
+                 "\[RightAssociation]"}], ",", 
+                TemplateBox[{"4"},
+                 "OutputSizeLimit`Skeleton"]}], "}"}]}]}], 
+            "\[RightAssociation]"}]}], "}"}],
+         Short[#, 5]& ],
+        BaseStyle->{Deployed -> False},
+        StripOnInput->False]},
+      {GridBox[{
+         {
+          TagBox[
+           TooltipBox[
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource[
+                "FEStrings", "sizeBriefExplanation"], StandardForm],
+               ImageSizeCache->{58., {2., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLText",
+             StripOnInput->False],
+            StyleBox[
+             DynamicBox[
+              ToBoxes[
+               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
+               StandardForm]], DynamicUpdating -> True, StripOnInput -> 
+             False]],
+           Annotation[#, 
+            Style[
+             Dynamic[
+              FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
+             DynamicUpdating -> True], "Tooltip"]& ], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{50., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 79, 27534870753761500376, 5/2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{56., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 79, 27534870753761500376, 5 2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{42., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 79, 27534870753761500376, Infinity],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{74., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           ButtonFunction:>FrontEndExecute[{
+              FrontEnd`SetOptions[
+              FrontEnd`$FrontEnd, 
+               FrontEnd`PreferencesSettings -> {"Page" -> "Advanced"}], 
+              FrontEnd`FrontEndToken["PreferencesDialog"]}],
+           Evaluator->None,
+           Method->"Preemptive"]}
+        },
+        AutoDelete->False,
+        FrameStyle->GrayLevel[0.85],
+        GridBoxDividers->{"Columns" -> {False, {True}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+        GridBoxSpacings->{"Columns" -> {{2}}}]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxItemSize->{
+      "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], 
+         Offset[1.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    BaseStyle->"OutputSizeLimit",
+    FrameMargins->{{12, 12}, {0, 15}},
+    FrameStyle->GrayLevel[0.85],
+    RoundingRadius->5,
+    StripOnInput->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  If[27534870753761500376 === $SessionID, 
+   Out[79], Message[
+     MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
+   Null]]], "Output",
+ CellChangeTimes->{3.750868049307645*^9, 3.750868119811145*^9, 
+  3.750869310764454*^9, 3.750870827780411*^9, 3.7508708884971123`*^9},
+ CellLabel->"Out[79]=",ExpressionUUID->"90cc19e5-f672-4701-bb7a-c77a066ac788"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"allmissiondrops", "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.750868143489572*^9, 3.750868145456345*^9}},
+ CellLabel->"In[71]:=",ExpressionUUID->"8d7bd660-77a8-44f4-919c-8d133e59d116"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"mission\"\>", "\[Rule]", "\<\"Family Squabble\"\>"}], ",", 
+   RowBox[{"\<\"level\"\>", "\[Rule]", "\<\"elite\"\>"}], ",", 
+   RowBox[{"\<\"ChronCost\"\>", "\[Rule]", "12"}], ",", 
+   RowBox[{"\<\"Runs\"\>", "\[Rule]", "292"}], ",", 
+   RowBox[{"\<\"Drops\"\>", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\[LeftAssociation]", 
+       RowBox[{
+        RowBox[{"\<\"ItemName\"\>", "\[Rule]", "\<\"Emitter Crystal\"\>"}], 
+        ",", 
+        RowBox[{"\<\"Rarity\"\>", "\[Rule]", "3"}], ",", 
+        RowBox[{"\<\"Drops\"\>", "\[Rule]", "75"}]}], "\[RightAssociation]"}],
+       ",", 
+      RowBox[{"\[LeftAssociation]", 
+       RowBox[{
+        RowBox[{"\<\"ItemName\"\>", "\[Rule]", "\<\"Alcohol\"\>"}], ",", 
+        RowBox[{"\<\"Rarity\"\>", "\[Rule]", "1"}], ",", 
+        RowBox[{"\<\"Drops\"\>", "\[Rule]", "365"}]}], 
+       "\[RightAssociation]"}], ",", 
+      RowBox[{"\[LeftAssociation]", 
+       RowBox[{
+        RowBox[{"\<\"ItemName\"\>", 
+         "\[Rule]", "\<\"Synthesized Polymer\"\>"}], ",", 
+        RowBox[{"\<\"Rarity\"\>", "\[Rule]", "0"}], ",", 
+        RowBox[{"\<\"Drops\"\>", "\[Rule]", "345"}]}], 
+       "\[RightAssociation]"}]}], "}"}]}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.750868145920887*^9, 3.7508708315877733`*^9},
+ CellLabel->"Out[71]=",ExpressionUUID->"f1f71ee5-ea9e-4cf0-89f9-cb9cc4434a04"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["items", "Section",
+ CellChangeTimes->{{3.75087006505302*^9, 
+  3.750870066171913*^9}},ExpressionUUID->"0b8f261f-1138-4899-bb11-\
+cb04a574840a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"itemdatabase", "[", "missionassoc_", "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"name", ",", "level", ",", "chrons", ",", "runs", ",", "drops"}],
+      "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"name", "=", 
+      RowBox[{"missionassoc", "[", "\"\<mission\>\"", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"level", "=", 
+      RowBox[{"missionassoc", "[", "\"\<level\>\"", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"chrons", "=", 
+      RowBox[{"missionassoc", "[", "\"\<ChronCost\>\"", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"runs", "=", 
+      RowBox[{"missionassoc", "[", "\"\<Runs\>\"", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"drops", "=", 
+      RowBox[{"missionassoc", "[", "\"\<Drops\>\"", "]"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"Map", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"#", "[", "\"\<ItemName\>\"", "]"}], ",", 
+           RowBox[{"#", "[", "\"\<Rarity\>\"", "]"}]}], "}"}], "\[Rule]", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"name", ",", "level"}], "}"}], "\[Rule]", 
+          RowBox[{"N", "[", 
+           RowBox[{"chrons", "/", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"#", "[", "\"\<Drops\>\"", "]"}], "/", "runs"}], 
+             ")"}]}], "]"}]}]}], "&"}], ",", "drops"}], "]"}]}]}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.750868205290269*^9, 3.750868291243765*^9}, {
+  3.7508683447601013`*^9, 3.7508685601636047`*^9}, {3.7508694577362022`*^9, 
+  3.750869497853435*^9}, {3.750869544154969*^9, 3.750869547236341*^9}, {
+  3.750872199096704*^9, 3.750872224904451*^9}, {3.750872268960619*^9, 
+  3.750872270582964*^9}},
+ CellLabel->"In[94]:=",ExpressionUUID->"3d91b323-72f4-4f18-b423-4a6df0682117"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"itemdatabase", "/@", "allmissiondrops"}]], "Input",
+ CellChangeTimes->{{3.7508695008266897`*^9, 3.750869507383317*^9}, {
+  3.7508696190756283`*^9, 3.750869623935204*^9}},
+ CellLabel->"In[99]:=",ExpressionUUID->"a62e5d66-241c-4281-9f75-7d5b0e4ed862"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Power","infy",
+   "\"Infinite expression \\!\\(\\*FractionBox[\\\"1\\\", \\\"0\\\"]\\) \
+encountered.\"",2,99,80,27534870753761500376,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.750869626076846*^9, 3.750870836797503*^9, 
+  3.750870891707821*^9, 3.750872226220643*^9, 3.750872272574807*^9, 
+  3.7508725368215923`*^9},
+ CellLabel->
+  "During evaluation of \
+In[99]:=",ExpressionUUID->"87e175e4-6f9c-4afe-9695-a3a0553b9ad5"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Power","infy",
+   "\"Infinite expression \\!\\(\\*FractionBox[\\\"1\\\", \\\"0\\\"]\\) \
+encountered.\"",2,99,81,27534870753761500376,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.750869626076846*^9, 3.750870836797503*^9, 
+  3.750870891707821*^9, 3.750872226220643*^9, 3.750872272574807*^9, 
+  3.750872536857286*^9},
+ CellLabel->
+  "During evaluation of \
+In[99]:=",ExpressionUUID->"8701f435-ca0b-4f56-89ec-7c3b58c3c5b1"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Power","infy",
+   "\"Infinite expression \\!\\(\\*FractionBox[\\\"1\\\", \\\"0\\\"]\\) \
+encountered.\"",2,99,82,27534870753761500376,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.750869626076846*^9, 3.750870836797503*^9, 
+  3.750870891707821*^9, 3.750872226220643*^9, 3.750872272574807*^9, 
+  3.750872536875903*^9},
+ CellLabel->
+  "During evaluation of \
+In[99]:=",ExpressionUUID->"184b669c-2bf6-45ff-a588-46b3b805ba94"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Power\\\", \\\"::\\\", \
+\\\"infy\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,99,83,27534870753761500376,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.750869626076846*^9, 3.750870836797503*^9, 
+  3.750870891707821*^9, 3.750872226220643*^9, 3.750872272574807*^9, 
+  3.750872536894919*^9},
+ CellLabel->
+  "During evaluation of \
+In[99]:=",ExpressionUUID->"d1d44a8c-b4fb-4842-8f28-2f075ad55139"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Infinity","indet",
+   "\"Indeterminate expression \\!\\(\\*RowBox[{\\\"0\\\", \\\" \\\", \
+\\\"ComplexInfinity\\\"}]\\) encountered.\"",2,99,84,27534870753761500376,
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.750869626076846*^9, 3.750870836797503*^9, 
+  3.750870891707821*^9, 3.750872226220643*^9, 3.750872272574807*^9, 
+  3.750872536916644*^9},
+ CellLabel->
+  "During evaluation of \
+In[99]:=",ExpressionUUID->"e1c7d879-b167-43d1-9505-546d4502e050"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Infinity","indet",
+   "\"Indeterminate expression \\!\\(\\*RowBox[{\\\"0\\\", \\\" \\\", \
+\\\"ComplexInfinity\\\"}]\\) encountered.\"",2,99,85,27534870753761500376,
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.750869626076846*^9, 3.750870836797503*^9, 
+  3.750870891707821*^9, 3.750872226220643*^9, 3.750872272574807*^9, 
+  3.75087253693703*^9},
+ CellLabel->
+  "During evaluation of \
+In[99]:=",ExpressionUUID->"cb346be8-2964-4d57-b1b8-d8919e85fa47"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Infinity","indet",
+   "\"Indeterminate expression \\!\\(\\*RowBox[{\\\"0\\\", \\\" \\\", \
+\\\"ComplexInfinity\\\"}]\\) encountered.\"",2,99,86,27534870753761500376,
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.750869626076846*^9, 3.750870836797503*^9, 
+  3.750870891707821*^9, 3.750872226220643*^9, 3.750872272574807*^9, 
+  3.750872536958425*^9},
+ CellLabel->
+  "During evaluation of \
+In[99]:=",ExpressionUUID->"e9ff8d7e-a166-47f8-ab20-c524302c0d02"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Infinity\\\", \
+\\\"::\\\", \\\"indet\\\"}], \\\"MessageName\\\"]\\) will be suppressed \
+during this calculation.\"",2,99,87,27534870753761500376,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.750869626076846*^9, 3.750870836797503*^9, 
+  3.750870891707821*^9, 3.750872226220643*^9, 3.750872272574807*^9, 
+  3.750872536978816*^9},
+ CellLabel->
+  "During evaluation of \
+In[99]:=",ExpressionUUID->"a675db9e-b0cd-4c91-943e-84bbd1f4e103"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   FrameBox[GridBox[{
+      {
+       ItemBox[
+        TagBox[
+         RowBox[{"{", 
+          TemplateBox[{"1"},
+           "OutputSizeLimit`Skeleton"], "}"}],
+         Short[#, 5]& ],
+        BaseStyle->{Deployed -> False},
+        StripOnInput->False]},
+      {GridBox[{
+         {
+          TagBox[
+           TooltipBox[
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource[
+                "FEStrings", "sizeBriefExplanation"], StandardForm],
+               ImageSizeCache->{58., {2., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLText",
+             StripOnInput->False],
+            StyleBox[
+             DynamicBox[
+              ToBoxes[
+               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
+               StandardForm]], DynamicUpdating -> True, StripOnInput -> 
+             False]],
+           Annotation[#, 
+            Style[
+             Dynamic[
+              FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
+             DynamicUpdating -> True], "Tooltip"]& ], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{50., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{50., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 99, 27534870753761500376, 5/2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{56., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 99, 27534870753761500376, 5 2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{42., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 99, 27534870753761500376, Infinity],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{74., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{74., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           ButtonFunction:>FrontEndExecute[{
+              FrontEnd`SetOptions[
+              FrontEnd`$FrontEnd, 
+               FrontEnd`PreferencesSettings -> {"Page" -> "Advanced"}], 
+              FrontEnd`FrontEndToken["PreferencesDialog"]}],
+           Evaluator->None,
+           Method->"Preemptive"]}
+        },
+        AutoDelete->False,
+        FrameStyle->GrayLevel[0.85],
+        GridBoxDividers->{"Columns" -> {False, {True}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+        GridBoxSpacings->{"Columns" -> {{2}}}]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxItemSize->{
+      "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], 
+         Offset[1.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    BaseStyle->"OutputSizeLimit",
+    FrameMargins->{{12, 12}, {0, 15}},
+    FrameStyle->GrayLevel[0.85],
+    RoundingRadius->5,
+    StripOnInput->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  If[27534870753761500376 === $SessionID, 
+   Out[99], Message[
+     MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
+   Null]]], "Output",
+ CellChangeTimes->{3.7508695079199867`*^9, 3.750869574767021*^9, 
+  3.750869626237563*^9, 3.75087083695035*^9, 3.750870891855424*^9, 
+  3.7508722263663187`*^9, 3.7508722727225647`*^9, 3.750872536990075*^9},
+ CellLabel->"Out[99]=",ExpressionUUID->"5c7e8b4f-aa5b-488b-8976-83e18fd176c9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"itemdropdata", "=", 
+  RowBox[{"Merge", "[", 
+   RowBox[{
+    RowBox[{"itemdatabase", "/@", "allmissiondrops"}], ",", 
+    RowBox[{
+     RowBox[{"Association", "@@", 
+      RowBox[{"SortBy", "[", 
+       RowBox[{"#", ",", 
+        RowBox[{"Function", "[", 
+         RowBox[{"x", ",", 
+          RowBox[{"x", "[", "\"\<ChronsPerDrop\>\"", "]"}]}], "]"}]}], 
+       "]"}]}], "&"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7508696930773697`*^9, 3.750869699823801*^9}, {
+   3.750870849157987*^9, 3.750870850042883*^9}, 3.750870894835218*^9, {
+   3.7508710277522993`*^9, 3.750871081733964*^9}, {3.750872231535701*^9, 
+   3.750872232375579*^9}, {3.75087252930501*^9, 3.750872531351079*^9}, {
+   3.7508728301266193`*^9, 3.7508728342202597`*^9}},
+ CellLabel->
+  "In[104]:=",ExpressionUUID->"cadeab2f-4143-4658-b7c3-2e1a2fd0a5e6"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Power","infy",
+   "\"Infinite expression \\!\\(\\*FractionBox[\\\"1\\\", \\\"0\\\"]\\) \
+encountered.\"",2,104,88,27534870753761500376,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.750872835166991*^9},
+ CellLabel->
+  "During evaluation of \
+In[104]:=",ExpressionUUID->"c7bad229-9875-4bcb-b3d5-6935b084c2c3"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Power","infy",
+   "\"Infinite expression \\!\\(\\*FractionBox[\\\"1\\\", \\\"0\\\"]\\) \
+encountered.\"",2,104,89,27534870753761500376,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.750872835187682*^9},
+ CellLabel->
+  "During evaluation of \
+In[104]:=",ExpressionUUID->"90bcfd7e-6ed3-4a96-91e3-1d21ebcb3e11"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Power","infy",
+   "\"Infinite expression \\!\\(\\*FractionBox[\\\"1\\\", \\\"0\\\"]\\) \
+encountered.\"",2,104,90,27534870753761500376,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.750872835207741*^9},
+ CellLabel->
+  "During evaluation of \
+In[104]:=",ExpressionUUID->"def39ebd-eb39-4ce5-b316-25a6ad26de9d"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Power\\\", \\\"::\\\", \
+\\\"infy\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,104,91,27534870753761500376,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.75087283522818*^9},
+ CellLabel->
+  "During evaluation of \
+In[104]:=",ExpressionUUID->"63208a03-f42e-4e4a-99eb-29a3f10f64f2"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Infinity","indet",
+   "\"Indeterminate expression \\!\\(\\*RowBox[{\\\"0\\\", \\\" \\\", \
+\\\"ComplexInfinity\\\"}]\\) encountered.\"",2,104,92,27534870753761500376,
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.750872835247711*^9},
+ CellLabel->
+  "During evaluation of \
+In[104]:=",ExpressionUUID->"8139e9fa-26ae-4c6b-91c3-b066a570d362"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Infinity","indet",
+   "\"Indeterminate expression \\!\\(\\*RowBox[{\\\"0\\\", \\\" \\\", \
+\\\"ComplexInfinity\\\"}]\\) encountered.\"",2,104,93,27534870753761500376,
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.75087283526692*^9},
+ CellLabel->
+  "During evaluation of \
+In[104]:=",ExpressionUUID->"66ba95ca-dde1-429e-91d8-0d065d2e7d18"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Infinity","indet",
+   "\"Indeterminate expression \\!\\(\\*RowBox[{\\\"0\\\", \\\" \\\", \
+\\\"ComplexInfinity\\\"}]\\) encountered.\"",2,104,94,27534870753761500376,
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.750872835288652*^9},
+ CellLabel->
+  "During evaluation of \
+In[104]:=",ExpressionUUID->"aff0ced2-0761-471e-8a07-c1bec2dc87ed"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Infinity\\\", \
+\\\"::\\\", \\\"indet\\\"}], \\\"MessageName\\\"]\\) will be suppressed \
+during this calculation.\"",2,104,95,27534870753761500376,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7508728353101587`*^9},
+ CellLabel->
+  "During evaluation of \
+In[104]:=",ExpressionUUID->"11387458-71a4-4852-9b67-8f80da362500"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   FrameBox[GridBox[{
+      {
+       ItemBox[
+        TagBox[
+         RowBox[{"\[LeftAssociation]", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"\<\"Emitter Crystal\"\>", ",", "3"}], "}"}], "\[Rule]", 
+            
+            RowBox[{"\[LeftAssociation]", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"\<\"All Sales Are Final\"\>", ",", "\<\"elite\"\>"}],
+                 "}"}], "\[Rule]", "61.89473684210526`"}], ",", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"\<\"Battle Shinzon\"\>", ",", "\<\"normal\"\>"}], 
+                "}"}], "\[Rule]", "252.`"}], ",", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"\<\"Change of Scenery\"\>", ",", "\<\"normal\"\>"}], 
+                "}"}], "\[Rule]", "126.85714285714286`"}], ",", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"\<\"Evacuation Orders\"\>", ",", "\<\"normal\"\>"}], 
+                "}"}], "\[Rule]", "245.33333333333334`"}], ",", 
+              TemplateBox[{"7"},
+               "OutputSizeLimit`Skeleton"], ",", 
+              RowBox[{
+               RowBox[{"{", 
+                
+                RowBox[{"\<\"The Annihilation Syndrome\"\>", 
+                 ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+               "97.57894736842105`"}], ",", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"\<\"The Walls Have Ears\"\>", ",", "\<\"epic\"\>"}], 
+                "}"}], "\[Rule]", "128.`"}], ",", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"\<\"Thy Enemy's Secrets\"\>", ",", "\<\"elite\"\>"}],
+                 "}"}], "\[Rule]", "150.`"}]}], "\[RightAssociation]"}]}], 
+           ",", 
+           TemplateBox[{"324"},
+            "OutputSizeLimit`Skeleton"], ",", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"\<\"Augment Icon\"\>", ",", "1"}], "}"}], "\[Rule]", 
+            RowBox[{"\[LeftAssociation]", 
+             RowBox[{
+              RowBox[{"{", 
+               TemplateBox[{"1"},
+                "OutputSizeLimit`Skeleton"], "}"}], "\[Rule]", 
+              TemplateBox[{"19"},
+               "OutputSizeLimit`Skeleton"]}], "\[RightAssociation]"}]}]}], 
+          "\[RightAssociation]"}],
+         Short[#, 5]& ],
+        BaseStyle->{Deployed -> False},
+        StripOnInput->False]},
+      {GridBox[{
+         {
+          TagBox[
+           TooltipBox[
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource[
+                "FEStrings", "sizeBriefExplanation"], StandardForm],
+               ImageSizeCache->{58., {2., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLText",
+             StripOnInput->False],
+            StyleBox[
+             DynamicBox[
+              ToBoxes[
+               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
+               StandardForm]], DynamicUpdating -> True, StripOnInput -> 
+             False]],
+           Annotation[#, 
+            Style[
+             Dynamic[
+              FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
+             DynamicUpdating -> True], "Tooltip"]& ], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{50., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
+                StandardForm],
+               ImageSizeCache->{50., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 104, 27534870753761500376, 5/2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{56., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
+                StandardForm],
+               ImageSizeCache->{56., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 104, 27534870753761500376, 5 2],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{42., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
+                StandardForm],
+               ImageSizeCache->{42., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           
+           ButtonFunction:>OutputSizeLimit`ButtonFunction[
+            OutputSizeLimit`Defer, 104, 27534870753761500376, Infinity],
+           Enabled->True,
+           Evaluator->Automatic,
+           Method->"Queued"], 
+          ButtonBox[
+           PaneSelectorBox[{False->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm],
+               ImageSizeCache->{74., {0., 8.}}],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControl",
+             StripOnInput->False], True->
+            StyleBox[
+             StyleBox[
+              DynamicBox[ToBoxes[
+                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
+                StandardForm]],
+              StripOnInput->False,
+              DynamicUpdating->True], "OSLControlActive",
+             StripOnInput->False]}, Dynamic[
+             CurrentValue["MouseOver"]],
+            Alignment->Center,
+            FrameMargins->0,
+            ImageSize->{Automatic, 25}],
+           Appearance->None,
+           BaselinePosition->Baseline,
+           ButtonFunction:>FrontEndExecute[{
+              FrontEnd`SetOptions[
+              FrontEnd`$FrontEnd, 
+               FrontEnd`PreferencesSettings -> {"Page" -> "Advanced"}], 
+              FrontEnd`FrontEndToken["PreferencesDialog"]}],
+           Evaluator->None,
+           Method->"Preemptive"]}
+        },
+        AutoDelete->False,
+        FrameStyle->GrayLevel[0.85],
+        GridBoxDividers->{"Columns" -> {False, {True}}},
+        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+        GridBoxSpacings->{"Columns" -> {{2}}}]}
+     },
+     DefaultBaseStyle->"Column",
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxDividers->{
+      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
+       "RowsIndexed" -> {}},
+     GridBoxItemSize->{
+      "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], 
+         Offset[1.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    BaseStyle->"OutputSizeLimit",
+    FrameMargins->{{12, 12}, {0, 15}},
+    FrameStyle->GrayLevel[0.85],
+    RoundingRadius->5,
+    StripOnInput->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  If[27534870753761500376 === $SessionID, 
+   Out[104], Message[
+     MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
+   Null]]], "Output",
+ CellChangeTimes->{
+  3.750869700208404*^9, {3.750870840074057*^9, 3.7508708504654617`*^9}, 
+   3.75087089512004*^9, {3.7508710733995*^9, 3.7508710818512077`*^9}, 
+   3.7508722329323473`*^9, 3.750872274694488*^9, {3.7508725322661533`*^9, 
+   3.750872537902*^9}, 3.750872835326952*^9},
+ CellLabel->
+  "Out[104]=",ExpressionUUID->"5678e7d3-c616-4f89-9022-9766b54d2150"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Take", "[", 
+  RowBox[{"%", ",", "1"}], "]"}]], "Input",
+ CellChangeTimes->{{3.75087097794419*^9, 3.750870992942425*^9}, {
+   3.75087108681421*^9, 3.750871087027152*^9}, 3.750872236528554*^9},
+ CellLabel->
+  "In[105]:=",ExpressionUUID->"84bf36ba-3b7b-4d97-98eb-1525806901f8"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"Emitter Crystal\"\>", ",", "3"}], "}"}], "\[Rule]", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\<\"All Sales Are Final\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+      "\[Rule]", "61.89473684210526`"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\<\"Battle Shinzon\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+      "\[Rule]", "252.`"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\<\"Change of Scenery\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+      "\[Rule]", "126.85714285714286`"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\<\"Evacuation Orders\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+      "\[Rule]", "245.33333333333334`"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\<\"Family Squabble\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+      "\[Rule]", "46.72`"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\<\"Hot Pursuit\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]",
+       "130.22222222222223`"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\<\"Man with a Plan\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+      "\[Rule]", "103.`"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\<\"Putting the Free in Freedom\"\>", ",", "\<\"normal\"\>"}],
+        "}"}], "\[Rule]", "143.84615384615384`"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\<\"Right Place, Wrong Time\"\>", ",", "\<\"elite\"\>"}], 
+       "}"}], "\[Rule]", "188.22222222222223`"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\<\"Smiles and Knives\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+      "\[Rule]", "266.6666666666667`"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\<\"Stolen Honor\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+      "\[Rule]", "222.85714285714286`"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\<\"The Annihilation Syndrome\"\>", ",", "\<\"elite\"\>"}], 
+       "}"}], "\[Rule]", "97.57894736842105`"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\<\"The Walls Have Ears\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+      "\[Rule]", "128.`"}], ",", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\<\"Thy Enemy's Secrets\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+      "\[Rule]", "150.`"}]}], "\[RightAssociation]"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.750872542176444*^9, 3.750872838570077*^9},
+ CellLabel->
+  "Out[105]=",ExpressionUUID->"2349a404-2ee3-463a-9f03-6407039f7ea9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Value", "Item",
+ CellChangeTimes->{{3.7508713628857727`*^9, 
+  3.750871365706006*^9}},ExpressionUUID->"4715d6b8-57fd-431c-b593-\
+6d8b8f5c8ea1"],
+
+Cell["item best cost /", "Subitem",
+ CellChangeTimes->{{3.7508713628857727`*^9, 3.750871370410849*^9}, {
+   3.750871417504611*^9, 3.750871453823682*^9}, {3.750871520950727*^9, 
+   3.750871549420477*^9}, 
+   3.7508715932507753`*^9},ExpressionUUID->"0646a743-a87d-4c6a-a2e7-\
+6f6e37551a2b"]
+}, Open  ]],
+
+Cell["\<\
+mission chrons / current crons per drop = fraction of item per run of this \
+mission
+fraction of item per run * best crons per drop = cron value of item per run
+sum of value per run = value of mission per run
+value of mission / crons per mission = efficiency value\
+\>", "Text",
+ CellChangeTimes->{{3.7508716157311163`*^9, 3.750871641225799*^9}, {
+  3.750871705254511*^9, 3.7508717818143*^9}, {3.7508718158366947`*^9, 
+  3.750871862026394*^9}},ExpressionUUID->"0ffabdcf-24bf-49ad-a44b-\
+4e803d970d9d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"neededitems", "=", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Emitter Crystal\>\"", ",", "3"}], "}"}], "}"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.7508739871324463`*^9, 3.750874004780954*^9}},
+ CellLabel->
+  "In[111]:=",ExpressionUUID->"f392fd2e-0593-4583-b593-7c08416af220"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"itemvaluemultiplier", "[", "item_", "]"}], ":=", 
+  RowBox[{"(*", 
+   RowBox[{"Boole", "[", 
+    RowBox[{"MemberQ", "[", 
+     RowBox[{"neededitems", ",", "item"}], "]"}], "]"}], "*)"}], 
+  "1"}]], "Input",
+ CellChangeTimes->{{3.7508739430050983`*^9, 3.750873981053832*^9}, {
+  3.750874851649242*^9, 3.750874852619358*^9}},
+ CellLabel->
+  "In[136]:=",ExpressionUUID->"3c51b76a-8d75-4ea7-bd37-9af7d88abadc"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"missionValue", "[", "missionassoc_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Total", "[", 
+    RowBox[{"Map", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"itemvaluemultiplier", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"#", "[", "\"\<ItemName\>\"", "]"}], ",", 
+           RowBox[{"#", "[", "\"\<Rarity\>\"", "]"}]}], "}"}], "]"}], "*", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"missionassoc", "[", "\"\<ChronCost\>\"", "]"}], "/", 
+          RowBox[{
+           RowBox[{"itemdropdata", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"#", "[", "\"\<ItemName\>\"", "]"}], ",", 
+              RowBox[{"#", "[", "\"\<Rarity\>\"", "]"}]}], "}"}], "]"}], "[", 
+           
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"missionassoc", "[", "\"\<mission\>\"", "]"}], ",", 
+             RowBox[{"missionassoc", "[", "\"\<level\>\"", "]"}]}], "}"}], 
+           "]"}]}], ")"}], "*", 
+        RowBox[{"First", "[", 
+         RowBox[{"itemdropdata", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"#", "[", "\"\<ItemName\>\"", "]"}], ",", 
+            RowBox[{"#", "[", "\"\<Rarity\>\"", "]"}]}], "}"}], "]"}], 
+         "]"}]}], "&"}], ",", 
+      RowBox[{"missionassoc", "[", "\"\<Drops\>\"", "]"}]}], "]"}], "]"}], 
+   "/", 
+   RowBox[{"missionassoc", "[", "\"\<ChronCost\>\"", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.750871892134206*^9, 3.7508719136257*^9}, {
+   3.750872312094095*^9, 3.7508723565553703`*^9}, {3.750872566173521*^9, 
+   3.750872655294199*^9}, {3.750872686451511*^9, 3.750872694856599*^9}, {
+   3.750872762273068*^9, 3.750872781589867*^9}, {3.750872843757333*^9, 
+   3.750872845134124*^9}, {3.7508728887564583`*^9, 3.750872947449651*^9}, {
+   3.750872987947075*^9, 3.750873013088949*^9}, {3.750873066686098*^9, 
+   3.750873080070127*^9}, {3.750873939610527*^9, 3.7508739406482983`*^9}, 
+   3.750874045208685*^9},
+ CellLabel->
+  "In[115]:=",ExpressionUUID->"ebabecbc-4279-443a-80f2-cb9416eb2405"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SortBy", "[", 
+   RowBox[{
+    RowBox[{"Map", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"#", "[", "\"\<mission\>\"", "]"}], ",", 
+          RowBox[{"#", "[", "\"\<level\>\"", "]"}]}], "}"}], "\[Rule]", 
+        RowBox[{"missionValue", "[", "#", "]"}]}], "&"}], ",", 
+      "allmissiondrops"}], "]"}], ",", "Values"}], "]"}], "//", 
+  "Reverse"}]], "Input",
+ CellChangeTimes->{{3.750872951870171*^9, 3.750872957583521*^9}, {
+  3.750874774640493*^9, 3.75087488424907*^9}},
+ CellLabel->
+  "In[140]:=",ExpressionUUID->"bfe9032c-9160-46a6-ac48-ac6efe885cc5"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Death in Battle\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", 
+    RowBox[{
+     FractionBox["1", "8"], " ", 
+     RowBox[{"(", 
+      RowBox[{"30.26317196071857`", "\[VeryThinSpace]", "+", 
+       RowBox[{"0.16875`", " ", "Null"}]}], ")"}]}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Salvage the Chavez\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", 
+    RowBox[{
+     FractionBox["1", "16"], " ", 
+     RowBox[{"(", 
+      RowBox[{"46.0432821199806`", "\[VeryThinSpace]", "+", 
+       RowBox[{"0.1301775147928994`", " ", "Null"}]}], ")"}]}]}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Professor's Deadline\"\>", ",", "\<\"epic\"\>"}], "}"}],
+     "\[Rule]", "Indeterminate"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Smiles and Knives\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "Indeterminate"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Flesh and Blood\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "195.56176528138747`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Coming Storm\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "176.34356842953474`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Flesh and Blood\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "167.41845303126516`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"History Interrupted\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "157.49066896353716`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Talarian Coup\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]",
+     "124.02608695652174`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Talk Less, Smile More\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "120.66245800224746`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"No Man Left Behind\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "88.34761798333747`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Back In Time\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]",
+     "61.841337907375646`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Coming Storm\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "50.22399080821653`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Talk Less, Smile More\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "50.21519546055195`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Top Marks\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]", 
+    "49.260872439745704`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"No Man Left Behind\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "43.7458529090091`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Talk Less, Smile More\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "41.7895145031075`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Of Two Evils\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "34.795883305249944`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Top Marks\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "34.15759660698008`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Breakwater\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "31.743718592964825`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Incompatible With Life\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "30.43653123104912`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Down Once More\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "23.945033010901273`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Coming Storm\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "20.706502447552058`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"History Interrupted\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "20.54010297980986`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Back In Time\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "19.45285363081234`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Evacuation Orders\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "17.756363636363638`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Beyond the Call\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "16.637852174507433`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Mutual Assured Destruction\"\>", ",", "\<\"epic\"\>"}], 
+     "}"}], "\[Rule]", "16.291603053435114`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Salvage the Chavez\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "16.107181989373448`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Lost Legacy\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "16.06216248612754`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Dogs of War\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]",
+     "15.600447189995473`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Lost Legacy\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "15.228510238399888`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Talarian Coup\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "15.009077878643094`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Rockslide\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]", 
+    "14.783976569692541`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Uprising\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "14.14826619043967`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Quell the Riots\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "14.081193325259603`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Researching Future History\"\>", ",", "\<\"elite\"\>"}], 
+     "}"}], "\[Rule]", "13.924306993389632`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Hounded\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "13.524759620411794`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Trust Issues\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "13.404949680871912`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Time Transporter\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "13.38074534161491`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Lashing Out\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "12.620639200014176`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Ancient Guardians\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "12.588486318731166`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Boardroom Politics\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "12.546769896769897`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Highwaymen\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "12.451017356985123`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Of Two Evils\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "12.186751315176846`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"One Future Ends\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "12.097270784770785`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Self Control\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "12.01349556167738`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Long Distance Call\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "11.962367552892024`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Secure the Chavez\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "11.846938883747459`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Hot Pursuit\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]",
+     "11.737295534230118`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Retroactive Vengeance\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "11.641372483221476`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Blunting the Dagger\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "11.550444177276317`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Long Live the King\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "11.538040956317595`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Change of Scenery\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "11.403438818565402`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Death in Battle\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "11.28766893027634`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Singular Occurrence\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "11.280228751024332`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Down Once More\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "11.036785408906127`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Feed A Fever\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "10.973527158114255`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Ishka Issues\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "10.972577248910435`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Professor's Deadline\"\>", ",", "\<\"elite\"\>"}], 
+     "}"}], "\[Rule]", "10.868403036903674`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Mortals and Mayhem\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "10.669902738967384`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"History Interrupted\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "10.530280163067047`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Too Greedily and Too Deep\"\>", ",", "\<\"normal\"\>"}], 
+     "}"}], "\[Rule]", "10.480057352539765`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Flesh and Blood\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "10.293256741429145`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Tale of Forgotten Lore\"\>", ",", "\<\"elite\"\>"}], 
+     "}"}], "\[Rule]", "10.256381565144416`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Rings of Time\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "10.232861341018035`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Time of Morn-ing\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "10.185356922849857`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Verge of Destruction\"\>", ",", "\<\"elite\"\>"}], 
+     "}"}], "\[Rule]", "10.160658852649972`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Hounded\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "10.027186516913071`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Pirate Problems\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "10.020814441067605`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Incompatible With Life\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "9.955415349364976`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Retroactive Vengeance\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "9.91637061716849`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Trust Issues\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]",
+     "9.893898718730934`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Serious Business\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "9.88175413086583`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Pretense of Mercy\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "9.6639866479504`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Race to the Finish\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "9.63680864887862`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"One Future Ends\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "9.594731322699491`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Father Figure\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "9.570350098849609`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Saving Smiley O'Brien\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "9.550506192866846`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Too Greedily and Too Deep\"\>", ",", "\<\"elite\"\>"}], 
+     "}"}], "\[Rule]", "9.481869821956094`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Improvised Entry\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "9.481112494811125`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Top Marks\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "9.337052275848164`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Back to School\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "9.331521048121838`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Breakwater\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]", 
+    "9.177606177606178`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Bravery in Action\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "9.17519227107531`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Saving Smiley O'Brien\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "9.084247291216913`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Cardassian Hospitality\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "9.054403949267105`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Rabid Fans\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "9.038153963444326`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Battle Shinzon\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "9.029348408920528`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Fan Club\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "9.013018103280917`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Baited Hook\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "8.924689410177027`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Not Without A Fight\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "8.882280651175307`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Of Two Evils\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]",
+     "8.678136663618162`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Stolen Honor\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "8.594411390834626`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Field Modifications\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "8.466706423160058`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Question of Rights\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "8.445544387905294`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Talarian Coup\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "8.435303910460203`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Down Once More\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "8.327324993999973`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"His Own Man\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]",
+     "8.249132012940898`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"All Sales Are Final\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "8.186429512516469`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Back Into the Fold\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "8.164244186046512`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"He Means Well\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "8.134815937544884`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Assault and Battery\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "8.09692473019938`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Death in Battle\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "7.936553920054653`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Pretense of Mercy\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "7.898417431684114`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Striking at Shadows\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "7.873108142560287`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Deadly Disruptions\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "7.7233469152004846`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Beyond the Call\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "7.667429251111522`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"He Means Well\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]",
+     "7.648158641443759`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Rabid Fans\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "7.584178668254497`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Arms Race\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]", 
+    "7.562218399323419`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Into His Own Hands\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "7.552713566594468`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Uprising\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "7.509595540080696`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Toss\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "7.467239084370431`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Logical Response\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "7.454965988740257`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Turncoat Outpost\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "7.450673859284749`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Leverage\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]", 
+    "7.445237389657377`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Iconian Insider\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "7.4369653417847275`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Ostensible Proof\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "7.289747689514977`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Raptors' Fury\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "7.243034696962466`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Verge of Destruction\"\>", ",", "\<\"epic\"\>"}], "}"}],
+     "\[Rule]", "7.2183519574892525`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Tale of Forgotten Lore\"\>", ",", "\<\"normal\"\>"}], 
+     "}"}], "\[Rule]", "7.172428952614712`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Under New Management\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "7.121441405901237`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Pillage and Plunder\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "7.1168972670283015`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Long Live the King\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "7.072242427509525`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Cytherian Highway\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "7.052090813437693`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Going Viral\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "7.035884992050818`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Right of Conquest\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "7.016614987211885`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Proven Toxicity\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "6.950663557799263`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Change of Scenery\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "6.912244424317898`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Thy Enemy's Secrets\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "6.87940677465994`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Instant Intervention\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "6.854178518602799`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Instant Intervention\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "6.851860331026998`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Turncoat Outpost\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "6.811619848116199`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Salvage the Chavez\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "6.799760766534523`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"On Their Heels\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "6.739557911803814`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Raptors' Fury\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "6.726338173363591`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Too Greedily and Too Deep\"\>", ",", "\<\"epic\"\>"}], 
+     "}"}], "\[Rule]", "6.705665648489377`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A New Recruit\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]",
+     "6.609053497942386`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Mutual Assured Destruction\"\>", ",", "\<\"elite\"\>"}], 
+     "}"}], "\[Rule]", "6.581895183282725`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Off at the Pass\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "6.580643529694674`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Vedek's Trail\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "6.574867828576914`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Professor's Deadline\"\>", ",", "\<\"normal\"\>"}], 
+     "}"}], "\[Rule]", "6.571274181369059`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Back to School\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "6.5621900484088584`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Lashing Out\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "6.537820044858307`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Common Ground\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]",
+     "6.500547561716977`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Singular Occurrence\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "6.4958033573141485`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"By Hook Or By Crook\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "6.466107944812981`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Death's Endeavor\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "6.444331727558799`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"No Man Left Behind\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "6.419553508369765`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Garak's Gamble\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "6.402093038302277`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Proven Toxicity\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "6.38424978687127`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Field Modifications\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "6.38327595050988`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Not A Drop to Drink\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "6.3719541176843375`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Retroactive Vengeance\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "6.316631806996391`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Serious Business\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "6.313321802245247`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Deadly Disruptions\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "6.298798755851484`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Ancient Guardians\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "6.2825933756166314`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Highwaymen\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "6.267174849900254`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"For His Own Good\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "6.244797997937903`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Lashing Out\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]",
+     "6.232850558926126`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Army of Anaydis\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "6.229101293943338`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Going Viral\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "6.223358908780903`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Cytherian Highway\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "6.2233245179552625`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Manna from Heaven\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "6.219488004741839`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Annihilation Syndrome\"\>", ",", "\<\"epic\"\>"}], 
+     "}"}], "\[Rule]", "6.21500809317265`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Striking at Shadows\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "6.20412601090014`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Pillage and Plunder\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "6.128973019738095`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Maquis Incitement\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "6.107554349696934`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Death's Endeavor\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "6.097678916827854`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Coursing Hounds\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "6.088977839694484`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Mad Vedek\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]",
+     "6.0787219101123595`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Putting the Free in Freedom\"\>", ",", "\<\"epic\"\>"}], 
+     "}"}], "\[Rule]", "6.0579954774841545`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Off at the Pass\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "6.0138401698846495`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Behind Closed Doors\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "6.011546276487094`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Vanguard's Challenge\"\>", ",", "\<\"epic\"\>"}], "}"}],
+     "\[Rule]", "5.996498687506071`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Trial by Fire\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.978170720070971`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Incompatible With Life\"\>", ",", "\<\"normal\"\>"}], "}"}],
+     "\[Rule]", "5.927908637638904`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Mortals and Mayhem\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.92780589051584`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Wrong Crowd\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.900928419423923`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Striking at Shadows\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.876100461992575`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Rings of Time\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.859119233358787`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Control Over Chaos\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "5.847473862660089`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Man with a Plan\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.828585106887235`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"With Friends Like These\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "5.819315398345261`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Popular Item\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "5.802515313459384`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Lost Legacy\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]",
+     "5.799470762768709`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Family Squabble\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "5.7681856727090075`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Cleansing Fire\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.767361980410223`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Not A Drop to Drink\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "5.765766222042863`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Mortals and Mayhem\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "5.731630960280595`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Highwaymen\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]", 
+    "5.73137654910907`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Man with a Plan\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.721319564083776`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Mad Vedek\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.716951483703233`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"For the People\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.707742504497889`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Ostensible Proof\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.704301596106416`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Wrong Crowd\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.66855704030246`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Show of Force\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.666666666666667`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"On Their Heels\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.664257091402745`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Rescue the Val Jean\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.662735584590877`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"For His Own Good\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "5.65816837727731`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Assault and Battery\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.653454202883094`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Cardassian Hospitality\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "5.651251317616351`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Army of Anaydis\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.571216513590288`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"First Conflict\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.567394897913595`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Coursing Hounds\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "5.559903420342034`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Walls Have Ears\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.5524637123682465`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Stolen Command\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.534499866166344`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A New Recruit\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.517679558011048`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Baited Hook\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "5.506988682428525`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Prodigal Son\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.477920385473643`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Not A Drop to Drink\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.46915824328543`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Surveying the Sphere\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "5.446169881178939`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Time of Morn-ing\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "5.435126795100173`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Blunting the Dagger\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.408271550383789`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Vanguard's Challenge\"\>", ",", "\<\"normal\"\>"}], 
+     "}"}], "\[Rule]", "5.406329168718445`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Feed A Fever\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.396543733663389`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Garak's Gamble\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.371813694488113`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"He Means Well\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.368386744884115`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Annihilation Syndrome\"\>", ",", "\<\"elite\"\>"}], 
+     "}"}], "\[Rule]", "5.358615602539709`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Toss\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]", 
+    "5.3485210194848`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Popular Item\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.344380305602717`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Maquis Incitement\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.312684468075462`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Feed A Fever\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]",
+     "5.268345063295776`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Deadly Disruptions\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.264994082833713`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Baited Hook\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]",
+     "5.256041705941857`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Surveying the Sphere\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.2312461405148785`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Trial by Fire\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.215279631803677`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Right Place, Wrong Time\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "5.2143887790953`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Into His Own Hands\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.2089001266095885`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Ancient Guardians\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.202033146591971`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Evacuation Orders\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "5.192001938011844`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Mad Vedek\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.185049297929778`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Cardassian Hospitality\"\>", ",", "\<\"normal\"\>"}], "}"}],
+     "\[Rule]", "5.169057313445513`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Thy Enemy's Secrets\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.167766466921763`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Tale of Forgotten Lore\"\>", ",", "\<\"epic\"\>"}], "}"}],
+     "\[Rule]", "5.166984374333703`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"For the People\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "5.157850624286168`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Indiscriminate Mind\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.028134401361157`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Organian Aid\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.022331471493224`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Not Without A Fight\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.015856679382963`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Act of Betrayal\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.004287180316586`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Assault and Battery\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Popular Item\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Logical Response\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Father Figure\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "5.`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Father Figure\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "5.`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Bold Move\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "5.`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Time Transporter\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.978967993425746`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Stolen Command\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.960364292862295`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"All Sales Are Final\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.9472958618663405`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Researching Future History\"\>", ",", "\<\"normal\"\>"}], 
+     "}"}], "\[Rule]", "4.945156333719865`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Hot Pursuit\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "4.941720722556265`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Internal Dispute\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.9321130999416845`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Dogs of War\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "4.930212022096566`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Manna from Heaven\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.918814479698`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Toss\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "4.917743030850134`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Rings of Time\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.915362705128084`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Bravery in Action\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.906693711967545`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Back Into the Fold\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.898361413206754`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Double Trouble\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.894985682253106`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"All Sales Are Final\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.887603878116344`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Family Squabble\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.882387418752757`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Self Control\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.857089157152691`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Ishka Issues\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]",
+     "4.852789160048832`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Temporary Hold\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.846597103350853`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Stolen Honor\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]",
+     "4.836642794510222`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Singular Occurrence\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.810088727527829`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Arms Race\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "4.802471395881007`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Walls Have Ears\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.796599363588761`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Blunting the Dagger\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.784875900385151`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Secure the Chavez\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.777683190895235`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Shielding the Prey\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.771980100594861`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Control Over Chaos\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.757336145569772`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Man with a Plan\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.7437412693925305`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Death Throes\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "4.739445520154902`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Pillage and Plunder\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.708766241083919`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Iconian Insider\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.702360997670386`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"By Hook Or By Crook\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.697653776212045`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Back to School\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.681215629776692`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Material Assistance\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.6617883239103755`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Behind Closed Doors\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.656357908518125`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Rockslide\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "4.637808687535702`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Under New Management\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.613144762758894`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Smiles and Knives\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.613113677140272`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Boardroom Politics\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.589505247376311`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Iconian Insider\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.581770752678267`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Double Trouble\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.556677317756727`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Time Transporter\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.551977147407861`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Improvised Entry\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.551724137931035`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Long Live the King\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.546987999161513`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Shielding the Prey\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.519540897799644`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Picking the Bones\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.515780449074302`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Organian Aid\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "4.510310040932736`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Temporary Hold\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.481651497837321`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Serious Business\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.4720750318863525`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"With Friends Like These\"\>", ",", "\<\"normal\"\>"}], 
+     "}"}], "\[Rule]", "4.454484565712663`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Kazon Scorned\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.449802270694975`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Manna from Heaven\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.440446237130037`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Question of Rights\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.420866357609292`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Garak's Gamble\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.411364501151257`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Uprising\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]", 
+    "4.404396622827785`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Cytherian Highway\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.395261943515931`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Bravery in Action\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.365871681284817`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Improvised Entry\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.36390473679937`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Arms Race\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "4.360227272727273`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Act of Betrayal\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.356025671737134`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Right of Conquest\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.350558173278793`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"One Future Ends\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.334237094754744`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A New Recruit\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.332378873342612`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Ticking Bomb\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.317399182646312`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Cleansing Fire\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.307412339684021`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Putting the Free in Freedom\"\>", ",", "\<\"normal\"\>"}], 
+     "}"}], "\[Rule]", "4.300184985262073`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Time of Morn-ing\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.29680646178309`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Into His Own Hands\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.27426767307327`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Mutual Assured Destruction\"\>", ",", "\<\"normal\"\>"}], 
+     "}"}], "\[Rule]", "4.271288009197643`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"For the People\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.26156260515736`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Ticking Bomb\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.23609022556391`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Indiscriminate Mind\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.221968889510907`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"On Their Heels\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.188629942637868`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Prodigal Son\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.170131430443805`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Thy Enemy's Secrets\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.168922550233966`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Kazon Scorned\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.156228956228956`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Ishka Issues\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.149904599298826`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Material Assistance\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.142427078165792`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Back Into the Fold\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.139633910868178`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Change of Scenery\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.138497373012063`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Hounded\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]", 
+    "4.120881489446205`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Hot Pursuit\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "4.115180723195895`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"First Conflict\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.103241922345914`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Common Ground\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.0723602279442`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Verge of Destruction\"\>", ",", "\<\"normal\"\>"}], 
+     "}"}], "\[Rule]", "4.048175219377371`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Trial by Fire\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]",
+     "4.021782497181161`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Self Control\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]",
+     "4.018921847487471`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Fan Club\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]", 
+    "4.008567226381491`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Instant Intervention\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.007627666451196`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"First Conflict\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Breakwater\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "4.`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Back In Time\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "4.`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Question of Rights\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "4.`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Kazon Scorned\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "4.`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Act of Betrayal\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "4.`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Bold Move\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]",
+     "4.`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Bold Move\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "4.`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"No Returns Accepted\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "3.997776615752434`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Prodigal Son\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "3.960629035774917`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Logical Response\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "3.96023277677413`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Temporary Hold\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "3.9570964018507913`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Right of Conquest\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.915945851315963`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Material Assistance\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.910511503477796`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Vanguard's Challenge\"\>", ",", "\<\"elite\"\>"}], 
+     "}"}], "\[Rule]", "3.908332526152654`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Internal Dispute\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.8943156501345237`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Picking the Bones\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "3.8865469334663407`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Not Without A Fight\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.8777159100205125`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Ostensible Proof\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.863224719101124`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Shielding the Prey\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "3.8576898550909355`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Pirate Problems\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.8400050055789667`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"For His Own Good\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "3.8324906950111175`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Internal Dispute\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "3.789885257530055`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Evacuation Orders\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "3.7783761884542426`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Rescue the Val Jean\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "3.772579126064688`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Rockslide\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "3.722109149135928`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Double Trouble\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "3.6846729820671538`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Annihilation Syndrome\"\>", ",", "\<\"normal\"\>"}], 
+     "}"}], "\[Rule]", "3.679987645000197`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Battle Shinzon\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.6757572056668297`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Rescue the Val Jean\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "3.6671652846313583`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Trust Issues\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "3.597258774665432`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Surveying the Sphere\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.5901823088786076`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Maquis Incitement\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "3.5486052211290287`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Dogs of War\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "3.54849952361581`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Right Place, Wrong Time\"\>", ",", "\<\"normal\"\>"}], 
+     "}"}], "\[Rule]", "3.5251217251606524`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Pretense of Mercy\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "3.5244205424128117`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Fan Club\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "3.5017926352491684`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Wrong Crowd\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "3.480464671595256`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"A Ticking Bomb\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "3.468007534967887`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Researching Future History\"\>", ",", "\<\"epic\"\>"}], 
+     "}"}], "\[Rule]", "3.4406934614088307`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Race to the Finish\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.367694213059073`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Rabid Fans\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]", 
+    "3.365245043086805`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Beyond the Call\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "3.342501702929378`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Family Squabble\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.3329561064044513`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"With Friends Like These\"\>", ",", "\<\"elite\"\>"}], "}"}],
+     "\[Rule]", "3.3033876420646764`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Smiles and Knives\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.2923337731385978`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Picking the Bones\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.272092240900898`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Race to the Finish\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "3.2467526177810186`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Turncoat Outpost\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "3.1517815241606213`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Saving Smiley O'Brien\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "3.134417563561091`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Off at the Pass\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "3.1055251857502046`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Behind Closed Doors\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.101408549830469`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Quell the Riots\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.0646627457321096`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Army of Anaydis\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "3.0521464327509067`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Vedek's Trail\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "3.0421283549103713`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Boardroom Politics\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "3.007793039101316`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"His Own Man\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "2.9901530217892898`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Coursing Hounds\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "2.9553955060040247`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Battle Shinzon\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "2.9543405527932816`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Proven Toxicity\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "2.9408423785142785`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Putting the Free in Freedom\"\>", ",", "\<\"elite\"\>"}], 
+     "}"}], "\[Rule]", "2.94064032188497`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Proof of Concept\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "2.9283823552309696`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Leverage\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]", 
+    "2.9274091441312624`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Vedek's Trail\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "2.917409672896353`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Operation Isolate\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "2.903406448027353`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Going Viral\"\>", ",", "\<\"normal\"\>"}], "}"}], "\[Rule]",
+     "2.8467107594509833`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Walls Have Ears\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "2.7235663516203745`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"His Own Man\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "2.72263728463094`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Long Distance Call\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "2.7189095339977456`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Right Place, Wrong Time\"\>", ",", "\<\"elite\"\>"}], "}"}],
+     "\[Rule]", "2.6846663509168645`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Proof of Concept\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "2.5946247240296967`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Under New Management\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "2.5757970643780683`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Secure the Chavez\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "2.4602586437602794`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Control Over Chaos\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "2.3852823056424666`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"The Raptors' Fury\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "2.3440074016888737`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Common Ground\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "2.2890752658194518`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Field Modifications\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "2.1339849789616094`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Indiscriminate Mind\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "1.9397491180353854`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"By Hook Or By Crook\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "1.9393607746362511`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Stolen Honor\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "1.9162049768199783`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Quell the Riots\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "1.7935330194007222`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Leverage\"\>", ",", "\<\"epic\"\>"}], "}"}], "\[Rule]", 
+    "1.619416350075317`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Cleansing Fire\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "1.533937273807317`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Organian Aid\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]",
+     "1.1646574803995762`"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Warranted Pursuit\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "0"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Warranted Pursuit\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "0"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Warranted Pursuit\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "0"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Stolen Command\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "0"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Proof of Concept\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "0"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Pirate Problems\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "0"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Operation Isolate\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "0"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Operation Isolate\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "0"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"No Returns Accepted\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "0"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"No Returns Accepted\"\>", ",", "\<\"elite\"\>"}], "}"}], 
+    "\[Rule]", "0"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Long Distance Call\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "0"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Death Throes\"\>", ",", "\<\"normal\"\>"}], "}"}], 
+    "\[Rule]", "0"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Death Throes\"\>", ",", "\<\"elite\"\>"}], "}"}], "\[Rule]",
+     "0"}], ",", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\<\"Death's Endeavor\"\>", ",", "\<\"epic\"\>"}], "}"}], 
+    "\[Rule]", "0"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.7508729581256723`*^9, 3.750873015510126*^9, 3.750874047681182*^9, {
+   3.750874835565908*^9, 3.7508748846169863`*^9}},
+ CellLabel->
+  "Out[140]=",ExpressionUUID->"fa5742eb-cb05-4b60-81a2-98af5d7b0fd1"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1370, 705},
+WindowMargins->{{-1525, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[1510, 35, 96, 1, 67, "Section",ExpressionUUID->"8c30bcea-ccde-40b6-9274-f8ad27ee04da"],
+Cell[1609, 38, 366, 9, 30, "Input",ExpressionUUID->"eddb8acb-bc49-4c8f-923e-1799bb452013"],
+Cell[1978, 49, 619, 13, 30, "Input",ExpressionUUID->"81ec6c86-27f1-4422-b7cb-23d7c6558f48"],
+Cell[2600, 64, 12170, 263, 1354, "Input",ExpressionUUID->"d0f3252e-8ff8-4fcf-9e55-ec0a1e228558"],
+Cell[14773, 329, 905, 20, 30, "Input",ExpressionUUID->"f7731bf1-9d09-4cae-a817-9c35a2232774"],
+Cell[CellGroupData[{
+Cell[15703, 353, 839, 20, 73, "Input",ExpressionUUID->"a84a8f64-e9fd-4f40-ba45-2ba49458821e"],
+Cell[16545, 375, 338, 5, 34, "Output",ExpressionUUID->"8ff4fcd7-b50a-428d-9c93-3d22af8fff52"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16932, 386, 157, 3, 67, "Section",ExpressionUUID->"87d4ce9c-2dcf-4f24-9758-2f01caed5290"],
+Cell[CellGroupData[{
+Cell[17114, 393, 243, 4, 32, "Item",ExpressionUUID->"02898799-97cd-48a7-8a86-e3c9bca05bf4"],
+Cell[17360, 399, 154, 3, 27, "Subitem",ExpressionUUID->"ec97e063-85aa-4623-988a-ae91adef0c1a"]
+}, Open  ]],
+Cell[17529, 405, 1923, 44, 73, "Input",ExpressionUUID->"d94b1cdd-b0ad-4e1b-96d4-4a7f70fc23da"],
+Cell[19455, 451, 2262, 52, 94, "Input",ExpressionUUID->"c039cff8-3672-460e-8312-8b981d809f79"],
+Cell[21720, 505, 2306, 52, 94, "Input",ExpressionUUID->"fa18c27b-d7c3-4f72-b211-a01550808f0d"],
+Cell[CellGroupData[{
+Cell[24051, 561, 462, 10, 30, "Input",ExpressionUUID->"6a3c137a-90ee-49ea-af20-93472a36c43e"],
+Cell[24516, 573, 10256, 258, 144, "Output",ExpressionUUID->"90cc19e5-f672-4701-bb7a-c77a066ac788"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34809, 836, 236, 4, 30, "Input",ExpressionUUID->"8d7bd660-77a8-44f4-919c-8d133e59d116"],
+Cell[35048, 842, 1443, 32, 60, "Output",ExpressionUUID->"f1f71ee5-ea9e-4cf0-89f9-cb9cc4434a04"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36540, 880, 149, 3, 67, "Section",ExpressionUUID->"0b8f261f-1138-4899-bb11-cb04a574840a"],
+Cell[36692, 885, 2015, 47, 241, "Input",ExpressionUUID->"3d91b323-72f4-4f18-b423-4a6df0682117"],
+Cell[CellGroupData[{
+Cell[38732, 936, 273, 4, 30, "Input",ExpressionUUID->"a62e5d66-241c-4281-9f75-7d5b0e4ed862"],
+Cell[39008, 942, 481, 11, 41, "Message",ExpressionUUID->"87e175e4-6f9c-4afe-9695-a3a0553b9ad5"],
+Cell[39492, 955, 479, 11, 41, "Message",ExpressionUUID->"8701f435-ca0b-4f56-89ec-7c3b58c3c5b1"],
+Cell[39974, 968, 479, 11, 41, "Message",ExpressionUUID->"184b669c-2bf6-45ff-a588-46b3b805ba94"],
+Cell[40456, 981, 559, 12, 24, "Message",ExpressionUUID->"d1d44a8c-b4fb-4842-8f28-2f075ad55139"],
+Cell[41018, 995, 514, 12, 24, "Message",ExpressionUUID->"e1c7d879-b167-43d1-9505-546d4502e050"],
+Cell[41535, 1009, 513, 12, 24, "Message",ExpressionUUID->"cb346be8-2964-4d57-b1b8-d8919e85fa47"],
+Cell[42051, 1023, 514, 12, 24, "Message",ExpressionUUID->"e9ff8d7e-a166-47f8-ab20-c524302c0d02"],
+Cell[42568, 1037, 563, 12, 24, "Message",ExpressionUUID->"a675db9e-b0cd-4c91-943e-84bbd1f4e103"],
+Cell[43134, 1051, 7717, 203, 97, "Output",ExpressionUUID->"5c7e8b4f-aa5b-488b-8976-83e18fd176c9"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[50888, 1259, 848, 19, 30, "Input",ExpressionUUID->"cadeab2f-4143-4658-b7c3-2e1a2fd0a5e6"],
+Cell[51739, 1280, 365, 9, 41, "Message",ExpressionUUID->"c7bad229-9875-4bcb-b3d5-6935b084c2c3"],
+Cell[52107, 1291, 365, 9, 41, "Message",ExpressionUUID->"90bcfd7e-6ed3-4a96-91e3-1d21ebcb3e11"],
+Cell[52475, 1302, 365, 9, 41, "Message",ExpressionUUID->"def39ebd-eb39-4ce5-b316-25a6ad26de9d"],
+Cell[52843, 1313, 444, 10, 24, "Message",ExpressionUUID->"63208a03-f42e-4e4a-99eb-29a3f10f64f2"],
+Cell[53290, 1325, 400, 10, 24, "Message",ExpressionUUID->"8139e9fa-26ae-4c6b-91c3-b066a570d362"],
+Cell[53693, 1337, 399, 10, 24, "Message",ExpressionUUID->"66ba95ca-dde1-429e-91d8-0d065d2e7d18"],
+Cell[54095, 1349, 400, 10, 24, "Message",ExpressionUUID->"aff0ced2-0761-471e-8a07-c1bec2dc87ed"],
+Cell[54498, 1361, 451, 10, 24, "Message",ExpressionUUID->"11387458-71a4-4852-9b67-8f80da362500"],
+Cell[54952, 1373, 10043, 258, 141, "Output",ExpressionUUID->"5678e7d3-c616-4f89-9022-9766b54d2150"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[65032, 1636, 299, 6, 30, "Input",ExpressionUUID->"84bf36ba-3b7b-4d97-98eb-1525806901f8"],
+Cell[65334, 1644, 2555, 66, 101, "Output",ExpressionUUID->"2349a404-2ee3-463a-9f03-6407039f7ea9"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[67926, 1715, 149, 3, 32, "Item",ExpressionUUID->"4715d6b8-57fd-431c-b593-6d8b8f5c8ea1"],
+Cell[68078, 1720, 288, 5, 27, "Subitem",ExpressionUUID->"0646a743-a87d-4c6a-a2e7-6f6e37551a2b"]
+}, Open  ]],
+Cell[68381, 1728, 511, 10, 104, "Text",ExpressionUUID->"0ffabdcf-24bf-49ad-a44b-4e803d970d9d"],
+Cell[68895, 1740, 328, 9, 30, "Input",ExpressionUUID->"f392fd2e-0593-4583-b593-7c08416af220"],
+Cell[69226, 1751, 441, 11, 30, "Input",ExpressionUUID->"3c51b76a-8d75-4ea7-bd37-9af7d88abadc"],
+Cell[69670, 1764, 2079, 48, 136, "Input",ExpressionUUID->"ebabecbc-4279-443a-80f2-cb9416eb2405"],
+Cell[CellGroupData[{
+Cell[71774, 1816, 655, 18, 30, "Input",ExpressionUUID->"bfe9032c-9160-46a6-ac48-ac6efe885cc5"],
+Cell[72432, 1836, 64435, 1749, 2284, "Output",ExpressionUUID->"fa5742eb-cb05-4b60-81a2-98af5d7b0fd1"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
